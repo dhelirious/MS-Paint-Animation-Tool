@@ -40,6 +40,8 @@ pip install pyautogui
 pip install pywin32
 pip install psutil
 
+
+Made with love by DheliriouS for all the artists out there that think MS Paint is still powerful yet simple enough for game development or animation.
 ## 🔗 Links & Support
 ### Connect With Me
 - 🎨 **Website**: [DheliriouS.art](https://www.DheliriouS.art/)

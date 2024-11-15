@@ -30,8 +30,10 @@ A lightweight, always-on-top animation assistant designed specifically for frame
 ![Captura de pantalla 2024-11-15 183054](https://github.com/user-attachments/assets/25805f54-e976-4818-8674-7d1f88b64e83)
 
 ## 🚀 Installation
+### Prerequisites for Executable (No installation Required - Drag and drop only)
+## Easiest method, copy the file "animation_helper.exe" in the folder you'd like to work on, execute it and done.
 
-### Prerequisites
+### Prerequisites for native excecution (python native)
 1. Install Python 3.8 or newer from [python.org](https://python.org)
 2. Ensure Python is added to PATH during installation
 3. Windows 11 (MS Paint has layers system)

@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import os
 from pathlib import Path
+import webbrowser
 
 class InitialDialog:
     def __init__(self, parent):
@@ -56,6 +57,15 @@ class InitialDialog:
                   command=self.start_new).grid(row=0, column=0, padx=5)
         ttk.Button(button_frame, text="Open Existing", 
                   command=self.open_existing).grid(row=0, column=1, padx=5)
+        
+        # Add credits text and link
+        ttk.Label(main_frame, text="MS Paint Anim Tool by DheliriouS",
+                 font=('Arial', 8)).grid(row=4, column=0, columnspan=2, pady=(10,0))
+        
+        link = ttk.Label(main_frame, text="www.dhelirious.art",
+                        font=('Arial', 8, 'underline'), foreground='blue', cursor='hand2')
+        link.grid(row=5, column=0, columnspan=2)
+        link.bind("<Button-1>", lambda e: webbrowser.open("http://www.dhelirious.art"))
         
     def start_new(self):
         try:

@@ -15,6 +15,7 @@ A lightweight, always-on-top animation assistant designed specifically for frame
 - **Automatic Layer Creation**: Option to automatically create a new layer when opening frames
 - **Layer Panel Access**: Automatically opens the layer panel for quick access
 - **Frame Organization**: All frames are stored in a dedicated 'movie' folder
+- **Sprite Sheet Export**: Combine all your frames into a single sprite sheet image, arranged horizontally from left to right for easy game development use
 
 ### File Management
 - **Smart Naming System**: 

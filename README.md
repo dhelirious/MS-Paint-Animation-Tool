@@ -33,6 +33,8 @@ A lightweight, always-on-top animation assistant designed specifically for frame
 ### Prerequisites for Executable (No installation Required - Drag and drop only)
 ## Easiest method, copy the file "animation_helper.exe" in the folder you'd like to work on, execute it and done.
 
+video tutorial: https://youtube.com/shorts/gIeoLN2-mEA?si=fEDBqQeiRZeT2pLv
+
 ### Prerequisites for native excecution (python native)
 1. Install Python 3.8 or newer from [python.org](https://python.org)
 2. Ensure Python is added to PATH during installation

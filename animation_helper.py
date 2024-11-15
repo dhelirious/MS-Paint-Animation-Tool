@@ -72,7 +72,7 @@ class AnimationHelper:
                   command=self.next_with_reference).grid(row=1, column=1, padx=2, pady=2)
         
         # Third row: In-between with reference
-        ttk.Button(main_frame, text="N i B w/Ref", 
+        ttk.Button(main_frame, text="Next inBtween w Reference", 
                   command=self.next_inbetween_with_reference).grid(row=2, column=0, columnspan=2, padx=2, pady=2)
         
         # Frame info label
@@ -85,10 +85,12 @@ class AnimationHelper:
         ttk.Button(main_frame, text="Open", 
                   command=self.open_frame).grid(row=4, column=1, padx=2, pady=2)
         
-        # Fifth row: Auto Layer checkbox
-        self.auto_layer = tk.BooleanVar(value=False)
+        # Fifth row: Sprite Sheet and Auto Layer
+        ttk.Button(main_frame, text="SpriteSheet", 
+                  command=self.create_spritesheet).grid(row=5, column=0, padx=2, pady=2)
+        self.auto_layer = tk.BooleanVar(value=True)
         ttk.Checkbutton(main_frame, text="Auto New Layer", 
-                       variable=self.auto_layer).grid(row=5, column=0, columnspan=2, pady=5)
+                       variable=self.auto_layer).grid(row=5, column=1, pady=5)
         
     def get_frame_info(self):
         return f"Frame: {self.current_frame}-{self.variation:03d}{self.file_format}"
@@ -270,6 +272,73 @@ class AnimationHelper:
         
     def run(self):
         self.root.mainloop()
+
+    def create_spritesheet(self):
+        """Create a sprite sheet from all frames"""
+        # Ask user for number of columns
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Sprite Sheet Settings")
+        dialog.transient(self.root)
+        dialog.grab_set()
+        
+        ttk.Label(dialog, text="Number of columns:").grid(row=0, column=0, padx=5, pady=5)
+        columns_var = tk.StringVar(value="5")
+        ttk.Entry(dialog, textvariable=columns_var).grid(row=0, column=1, padx=5, pady=5)
+        
+        def on_ok():
+            try:
+                columns = int(columns_var.get())
+                if columns <= 0:
+                    raise ValueError("Columns must be positive")
+                dialog.destroy()
+                self._generate_spritesheet(columns)
+            except ValueError as e:
+                messagebox.showerror("Error", "Please enter a valid positive number")
+                
+        ttk.Button(dialog, text="OK", command=on_ok).grid(row=1, column=0, columnspan=2, pady=10)
+        
+    def _generate_spritesheet(self, columns):
+        """Generate the actual sprite sheet"""
+        # Get all frame files sorted
+        files = sorted(glob.glob(os.path.join(self.frame_manager.movie_dir, f"*{self.file_format}")),
+                      key=lambda x: tuple(map(int, os.path.splitext(os.path.basename(x))[0].split('-'))))
+        
+        if not files:
+            messagebox.showerror("Error", "No frames found!")
+            return
+            
+        # Get dimensions from first frame
+        with Image.open(files[0]) as first_frame:
+            sprite_width, sprite_height = first_frame.size
+            
+        # Calculate sprite sheet dimensions
+        num_sprites = len(files)
+        rows = (num_sprites + columns - 1) // columns  # Ceiling division
+        sheet_width = columns * sprite_width
+        sheet_height = rows * sprite_height
+        
+        # Create new image
+        spritesheet = Image.new('RGBA', (sheet_width, sheet_height), (0, 0, 0, 0))
+        
+        # Place sprites
+        for i, file in enumerate(files):
+            row = i // columns
+            col = i % columns
+            x = col * sprite_width
+            y = row * sprite_height
+            
+            with Image.open(file) as sprite:
+                spritesheet.paste(sprite, (x, y))
+        
+        # Save sprite sheet with unique name
+        base_name = "spritesheet"
+        counter = 0
+        while os.path.exists(os.path.join(self.frame_manager.movie_dir, f"{base_name}{counter if counter else ''}.png")):
+            counter += 1
+        
+        output_path = os.path.join(self.frame_manager.movie_dir, f"{base_name}{counter if counter else ''}.png")
+        spritesheet.save(output_path)
+        messagebox.showinfo("Success", f"Sprite sheet created: {os.path.basename(output_path)}")
 
 if __name__ == "__main__":
     app = AnimationHelper()

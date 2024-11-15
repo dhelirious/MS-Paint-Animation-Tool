@@ -38,3 +38,12 @@ pip install Pillow
 pip install pyautogui
 pip install pywin32
 pip install psutil
+
+## 🔗 Links & Support
+### Connect With Me
+- 🎨 **Website**: [DheliriouS.art](https://www.DheliriouS.art/)
+- 🐦 **X/Twitter**: [@DhevliriouS](https://www.x.com/@DhevliriouS)
+
+### Support the Project
+If you find this tool helpful, consider supporting its development:
+- 💝 **PayPal**: [Donate](https://www.paypal.me/DheliriouS)

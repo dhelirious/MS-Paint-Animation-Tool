@@ -3,6 +3,8 @@
 A lightweight, always-on-top animation assistant designed specifically for frame-by-frame animation in MS Paint. Perfect for artists who prefer the simplicity of Paint but need professional animation tools.
 
 ## ✨ Features
+![Captura de pantalla 2024-11-15 183013](https://github.com/user-attachments/assets/b5ba53f6-8bc0-47ad-8064-8ffb677732f7)
+![Captura de pantalla 2024-11-15 183041](https://github.com/user-attachments/assets/7a05d332-88b2-4ba2-a5ea-c4aeb4fb3967)
 
 ### Core Navigation
 - **Basic Frame Navigation**: Move between frames with 'Next' and 'Back' buttons
@@ -25,16 +27,18 @@ A lightweight, always-on-top animation assistant designed specifically for frame
 - **Custom Dimensions**: Set your canvas size at project start
 - **Open Existing Projects**: Continue working on previous animations
 
+![Captura de pantalla 2024-11-15 183054](https://github.com/user-attachments/assets/25805f54-e976-4818-8674-7d1f88b64e83)
+
 ## 🚀 Installation
 
 ### Prerequisites
 1. Install Python 3.8 or newer from [python.org](https://python.org)
 2. Ensure Python is added to PATH during installation
+3. Windows 11 (MS Paint has layers system)
 
 ### Required Dependencies
 Open PowerShell and install the following packages:
 
-bash
 pip install Pillow
 pip install pyautogui
 pip install pywin32
